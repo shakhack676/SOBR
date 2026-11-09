@@ -11,7 +11,7 @@ export type Unit = {
   specialties: string[];
   equipment: string[];
   status: string;
-  icon: "assault" | "recon" | "sniper" | "support" | "armor" | "air";
+  icon: "assault" | "recon" | "sniper" | "support" | "armor" | "air" | "drone";
   filter: "combate" | "reconhecimento" | "apoio" | "especial";
 };
 
@@ -117,6 +117,23 @@ export const units: Unit[] = [
     status: "Estrutura provisória",
     icon: "air",
     filter: "especial",
+  },
+  {
+    slug: "drone",
+    code: "СБР-07",
+    name: "БПЛА",
+    nameRu: "БПЛА",
+    role: "Operador de Drone",
+    short: "Reconhecimento aéreo, vigilância tática e aquisição de alvos.",
+    description:
+      "Célula especializada no emprego de sistemas aéreos não tripulados (VANT / FPV). Realiza monitoramento em tempo real do terreno, rastreamento de movimentação hostil, correção de tiro de precisão e apoio tático direto às equipes de assalto.",
+    image: "/images/unit-drone.webp",
+    imageAlt: "Operador tático controlando drone de reconhecimento em campo",
+    specialties: ["Pilotagem FPV", "Vigilância de área", "Designação de alvos", "Inteligência tática"],
+    equipment: ["Drone de reconhecimento / FPV", "Óculos táticos FPV", "Estação de controle e telemetria", "Rádio digital de dados"],
+    status: "Estrutura provisória",
+    icon: "drone",
+    filter: "reconhecimento",
   },
 ];
 

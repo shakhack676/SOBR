@@ -69,6 +69,9 @@ export default function HomePage() {
           <h1 className="hero__title">
             O que é o <span>СОБР?</span>
           </h1>
+          <p className="hero__slogan">
+            “A força está na união e a vitória na estratégia.”
+          </p>
           <div className="hero__lead">
             <p>
               O <strong>СОБР</strong> é uma organização de operações táticas
@@ -76,14 +79,14 @@ export default function HomePage() {
               disciplina, hierarquia, treinamento e trabalho em equipe.
             </p>
             <p>
-              Atuamos em <strong>Arma Reforger</strong> com unidades, funções e
-              especializações definidas. Cada operador tem um papel claro dentro
-              da missão — e responde por ele.
+              Nossa prioridade não é apenas vencer confrontos, mas controlar o
+              ritmo da guerra através de planejamento, comunicação e execução
+              precisa. Não procuramos vitórias fáceis: <strong>nós as criamos</strong>.
             </p>
             <p>
-              Do treinamento básico às operações de maior complexidade, buscamos
-              uma experiência <strong>MilSim organizada e estratégica</strong>,
-              sem atalhos e sem improviso permanente.
+              Atuamos em <strong>Arma Reforger</strong> com unidades, funções e
+              especializações definidas. Cada operador tem um papel, cada movimento
+              tem um propósito e cada vitória é resultado de estratégia superior.
             </p>
           </div>
           <div className="btn-row hero__actions">
@@ -122,9 +125,11 @@ export default function HomePage() {
         <div className="quote-banner__content">
           <span className="eyebrow quote-banner__label">Doutrina & princípio</span>
           <blockquote className="quote-banner__text">
-            “Forjados pelo desafio, guiados pela disciplina, unidos por um
-            propósito.”
+            “A força está na união e a vitória na estratégia.”
           </blockquote>
+          <p className="quote-banner__sub">
+            Não procuramos vitórias fáceis. Nós as criamos.
+          </p>
           <span className="quote-banner__cite">{site.name} — Comando</span>
         </div>
       </section>
@@ -232,16 +237,18 @@ export default function HomePage() {
             <div>
               <h2 id="missao">Nossa missão</h2>
               <p className="mission-panel__text">
-                Preparar operadores para atuar em ambientes hostis e incertos,
-                aplicando táticas, técnicas e procedimentos com disciplina,
-                lealdade e espírito de corpo. O objetivo não é apenas vencer a
-                partida: é manter o padrão quando a situação sai do previsto.
+                Nossa prioridade não é apenas vencer confrontos, mas controlar o
+                ritmo da guerra através de planejamento, comunicação e execução
+                precisa. Operamos com eficiência, valorizando o trabalho em
+                equipe acima de ações individuais. Cada membro tem um papel,
+                cada movimento tem um propósito e cada vitória é resultado de
+                estratégia superior.
               </p>
               <div className="mission-panel__quote">
                 <Logo className="mission-panel__emblem" size={44} alt="" />
                 <p>
-                  “Não é sobre ser o melhor.
-                  <br />É sobre ser preparado.”
+                  “Não procuramos vitórias fáceis.
+                  <br />Nós as criamos.”
                 </p>
               </div>
             </div>

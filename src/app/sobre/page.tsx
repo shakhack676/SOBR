@@ -53,7 +53,7 @@ const dossier = [
   { label: "Plataforma", value: "Arma Reforger" },
   { label: "Ambiente", value: "MilSim tático" },
   { label: "Idioma", value: "Português (BR)" },
-  { label: "Estrutura", value: "6 unidades" },
+  { label: "Estrutura", value: "7 unidades" },
   { label: "Status", value: "Provisório" },
 ];
 

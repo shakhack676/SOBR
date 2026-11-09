@@ -4,7 +4,8 @@ type Icon =
   | "sniper"
   | "support"
   | "armor"
-  | "air";
+  | "air"
+  | "drone";
 
 const glyphs: Record<Icon, React.ReactNode> = {
   assault: (
@@ -48,6 +49,17 @@ const glyphs: Record<Icon, React.ReactNode> = {
       <path d="M32 30c7 0 12 5 12 11H20c0-6 5-11 12-11Z" />
       <path d="M20 41 14 58M44 41l6 17M26 41l-2 17M38 41l2 17" />
       <circle cx="32" cy="27" r="2" />
+    </g>
+  ),
+  drone: (
+    <g stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="32" cy="45" r="4" fill="currentColor" fillOpacity="0.25" />
+      <path d="M25 38l14 14M39 38L25 52" />
+      <circle cx="23" cy="36" r="3.5" />
+      <circle cx="41" cy="36" r="3.5" />
+      <circle cx="23" cy="54" r="3.5" />
+      <circle cx="41" cy="54" r="3.5" />
+      <path d="M32 37v-4" />
     </g>
   ),
 };

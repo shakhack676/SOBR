@@ -12,6 +12,10 @@ export const site = {
   fullName: "СОБР — Clã de Operações Táticas",
   tagline: "ДИСЦИПЛИНА • ЧЕСТЬ • БРАТСТВО",
   taglinePt: "Disciplina • Honra • Irmandade",
+  slogan: "A força está na união e a vitória na estratégia",
+  sloganSecondary: "Não procuramos vitórias fáceis. Nós as criamos.",
+  mission:
+    "Nossa prioridade não é apenas vencer confrontos, mas controlar o ritmo da guerra através de planejamento, comunicação e execução precisa. Operamos com eficiência, valorizando o trabalho em equipe acima de ações individuais. Cada membro tem um papel, cada movimento tem um propósito e cada vitória é resultado de estratégia superior.",
   description:
     "Clã de operações táticas do Arma Reforger. Organização, disciplina, hierarquia e treinamento contínuo em um ambiente MilSim.",
   shortDescription:

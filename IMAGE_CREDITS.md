@@ -14,6 +14,7 @@ Antes de reutilizar o projeto comercialmente, confirme a licença de cada arquiv
 | `unit-support.webp` | Moscow 2012 Victory Day Parade Rehearsal, Military artillery, Russia |
 | `unit-armor.webp` | Russian Ground Forces Iveco LMV |
 | `unit-air.webp` | Russian Airborne Troops in Bosnia |
+| `unit-drone.webp` | Operação de VANT / Reconhecimento tático militar |
 | `op-urban.webp` | Moscow 2012 Victory Day Parade Rehearsal, T-90 tank crew, Russia |
 | `op-night.webp` | Moscow 2012 Victory Day Parade Rehearsal, Military Vehicles, Night, Russia |
 | `op-smoke.webp` | Anti-AircraftExercise2019-34 |

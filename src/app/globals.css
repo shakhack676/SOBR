@@ -720,6 +720,17 @@ main {
   color: var(--accent-bright);
 }
 
+.hero__slogan {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  color: #e5e7eb;
+  line-height: 1.4;
+  border-left: 2px solid var(--accent);
+  padding-left: 14px;
+}
+
 .hero__lead {
   margin-top: 26px;
   display: grid;
@@ -984,9 +995,16 @@ main {
   font-style: italic;
   font-weight: 500;
   font-size: clamp(1.2rem, 2.1vw, 1.75rem);
-  line-height: 1.3;
+  line-height: 1.35;
   color: var(--text);
-  max-width: 22ch;
+  max-width: 34ch;
+}
+
+.quote-banner__sub {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  color: #c7c9c5;
+  letter-spacing: 0.02em;
 }
 
 .quote-banner__cite {
