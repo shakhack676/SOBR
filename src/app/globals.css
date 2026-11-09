@@ -2569,11 +2569,37 @@ main {
 
 .form-success {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  color: #86efac;
+}
+
+.form-success svg {
+  flex: none;
+  margin-top: 2px;
+  color: #4ade80;
+}
+
+.form-success strong {
+  display: block;
+  font-size: 0.92rem;
+  color: #bbf7d0;
+}
+
+.form-success__sub {
+  margin-top: 6px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.form-success__action {
   margin-top: 12px;
-  font-size: 0.78rem;
-  color: var(--accent-bright);
 }
 
 .form-fail {
@@ -2583,6 +2609,203 @@ main {
   margin-top: 12px;
   font-size: 0.78rem;
   color: var(--danger);
+}
+
+/* ---------- Recruitment Discord Modal & Notice ---------- */
+
+.recruit-discord-notice {
+  margin-top: 24px;
+  padding: 18px 20px;
+  background: rgba(185, 28, 28, 0.08);
+  border: 1px solid rgba(185, 28, 28, 0.28);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.recruit-discord-notice__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.recruit-discord-notice__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm, 6px);
+  background: rgba(185, 28, 28, 0.16);
+  border: 1px solid rgba(185, 28, 28, 0.3);
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  flex: none;
+}
+
+.recruit-discord-notice__head strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--white);
+  line-height: 1.35;
+}
+
+.recruit-discord-notice__head p {
+  margin-top: 4px;
+  font-size: 0.84rem;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+.recruit-discord-notice__action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.recruit-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(4, 5, 4, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.recruit-modal {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: #0f120e;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(185, 28, 28, 0.25);
+  padding: clamp(24px, 4vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: modalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.recruit-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.recruit-modal__badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.recruit-modal__badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.recruit-modal__close {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-sm, 6px);
+  display: grid;
+  place-items: center;
+  transition: color 0.15s, background 0.15s;
+}
+
+.recruit-modal__close:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.recruit-modal__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.recruit-modal__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(185, 28, 28, 0.14);
+  border: 1px solid rgba(185, 28, 28, 0.32);
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.recruit-modal__title {
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.25;
+}
+
+.recruit-modal__text {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.recruit-modal__text strong {
+  color: var(--white);
+}
+
+.recruit-modal__subtext {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.recruit-modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.recruit-modal__btn-discord {
+  width: 100%;
+  justify-content: center;
+  padding: 13px 20px;
+  font-size: 0.92rem;
+  font-weight: 600;
 }
 
 /* ---------- Accordion ---------- */

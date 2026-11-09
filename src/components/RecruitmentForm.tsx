@@ -1,9 +1,11 @@
 "use client";
 
-import { useCallback, useState } from "react";
-import { Download, Send, AlertCircle, CheckCircle } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { Download, Send, AlertCircle, CheckCircle, X } from "lucide-react";
 import { units } from "@/data/units";
+import { site } from "@/data/site";
 import { CopyButton } from "./CopyButton";
+import { DiscordIcon } from "./DiscordIcon";
 import { downloadTextFile, slugifyName } from "@/lib/forms";
 
 const DISCORD_WEBHOOK_URL =
@@ -41,6 +43,18 @@ export function RecruitmentForm() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "ok" | "fail">(
     "idle",
   );
+  const [showDiscordModal, setShowDiscordModal] = useState(false);
+
+  useEffect(() => {
+    if (!showDiscordModal) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && !submitting) {
+        setShowDiscordModal(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [showDiscordModal, submitting]);
 
   function update<K extends keyof Fields>(key: K, value: Fields[K]) {
     setFields((current) => ({ ...current, [key]: value }));
@@ -108,6 +122,12 @@ export function RecruitmentForm() {
     }
 
     setError("");
+    // Abre a mensagem de aviso perguntando se está no Discord antes de concluir o envio
+    setShowDiscordModal(true);
+  }
+
+  async function executeSubmit() {
+    setError("");
     setSubmitStatus("idle");
     setSubmitting(true);
 
@@ -131,17 +151,19 @@ export function RecruitmentForm() {
     ].join("\n");
     setOutput(block);
 
-    sendToDiscord()
-      .then(() => {
-        setSubmitStatus("ok");
-        setSubmitting(false);
-      })
-      .catch((err) => {
-        console.error("Erro ao enviar webhook:", err);
-        setSubmitStatus("fail");
-        setSubmitting(false);
-        setError("Não foi possível enviar a inscrição ao Discord. Tente novamente ou use o botão Copiar ficha para enviar manualmente.");
-      });
+    try {
+      await sendToDiscord();
+      setSubmitStatus("ok");
+      setShowDiscordModal(false);
+    } catch (err) {
+      console.error("Erro ao enviar webhook:", err);
+      setSubmitStatus("fail");
+      setError(
+        "Não foi possível enviar a inscrição ao Discord. Tente novamente ou use o botão Copiar ficha para enviar manualmente.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -244,6 +266,32 @@ export function RecruitmentForm() {
         </div>
       </div>
 
+      <div className="recruit-discord-notice">
+        <div className="recruit-discord-notice__head">
+          <span className="recruit-discord-notice__icon" aria-hidden="true">
+            <DiscordIcon size={24} />
+          </span>
+          <div>
+            <strong>Aviso importante: você já está no Discord oficial?</strong>
+            <p>
+              Para que sua ficha seja avaliada e seu indicativo homologado pelo
+              comando, é obrigatório estar presente no servidor oficial do СОБР.
+            </p>
+          </div>
+        </div>
+        <div className="recruit-discord-notice__action">
+          <a
+            href={site.discordInvite}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--discord btn--sm"
+          >
+            <DiscordIcon size={16} />
+            Entrar no Discord do servidor
+          </a>
+        </div>
+      </div>
+
       <div className="form-actions">
         <button
           type="submit"
@@ -283,8 +331,24 @@ export function RecruitmentForm() {
 
       {submitStatus === "ok" ? (
         <div className="form-success" role="status">
-          <CheckCircle size={18} />
-          <span>Inscrição enviada ao comando oficial do СОБР.</span>
+          <CheckCircle size={20} />
+          <div>
+            <strong>Inscrição enviada ao comando oficial do СОБР!</strong>
+            <p className="form-success__sub">
+              Lembre-se: todo o processo seletivo e comunicados de treino acontecem no nosso Discord. Caso ainda não tenha entrado, acesse pelo botão abaixo:
+            </p>
+            <div className="form-success__action">
+              <a
+                href={site.discordInvite}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--discord btn--sm"
+              >
+                <DiscordIcon size={15} />
+                Entrar no Discord do servidor
+              </a>
+            </div>
+          </div>
         </div>
       ) : submitStatus === "fail" ? (
         <div className="form-fail" role="alert">
@@ -322,6 +386,90 @@ export function RecruitmentForm() {
           <pre>{output}</pre>
         </div>
       ) : null}
+
+      {showDiscordModal && (
+        <div
+          className="recruit-modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="discord-modal-title"
+          onClick={(e) => {
+            if (e.target === e.currentTarget && !submitting) {
+              setShowDiscordModal(false);
+            }
+          }}
+        >
+          <div className="recruit-modal">
+            <div className="recruit-modal__header">
+              <span className="recruit-modal__badge">Verificação de alistamento</span>
+              <button
+                type="button"
+                className="recruit-modal__close"
+                onClick={() => setShowDiscordModal(false)}
+                disabled={submitting}
+                aria-label="Fechar aviso"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="recruit-modal__body">
+              <span className="recruit-modal__icon" aria-hidden="true">
+                <DiscordIcon size={34} />
+              </span>
+              <h3 id="discord-modal-title" className="recruit-modal__title">
+                Você já está no Discord oficial?
+              </h3>
+              <p className="recruit-modal__text">
+                Para que o comando possa avaliar sua ficha, realizar a entrevista
+                e homologar seu indicativo, <strong>é obrigatório estar presente no servidor oficial do СОБР</strong>.
+              </p>
+              <p className="recruit-modal__subtext">
+                Você já faz parte do nosso servidor? Se ainda não entrou, use o botão abaixo para ingressar antes de enviar.
+              </p>
+            </div>
+
+            <div className="recruit-modal__actions">
+              <a
+                href={site.discordInvite}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--discord recruit-modal__btn-discord"
+              >
+                <DiscordIcon size={18} />
+                Entrar no Discord do servidor
+              </a>
+
+              <button
+                type="button"
+                className="btn btn--primary"
+                disabled={submitting}
+                onClick={executeSubmit}
+              >
+                {submitting ? (
+                  <>
+                    <Send size={16} /> Enviando ficha…
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} />
+                    Sim, já estou no Discord · Enviar ficha
+                  </>
+                )}
+              </button>
+
+              <button
+                type="button"
+                className="btn btn--ghost"
+                disabled={submitting}
+                onClick={() => setShowDiscordModal(false)}
+              >
+                Voltar e revisar ficha
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </form>
   );
 }
