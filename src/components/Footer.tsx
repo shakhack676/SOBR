@@ -1,19 +1,18 @@
 import Link from "next/link";
 import { communityHref, footerLinks, site } from "@/data/site";
-import { SobrEmblem } from "./SobrEmblem";
+import { Logo } from "./Logo";
 import { DiscordIcon } from "./DiscordIcon";
 import { Mail } from "lucide-react";
 
 export function Footer() {
   const year = 2026;
-  const discordConfigured = Boolean(site.discordInvite);
 
   return (
     <footer className="site-footer">
       <div className="footer-main">
         <div className="footer-brand">
           <div className="footer-brand__head">
-            <SobrEmblem />
+            <Logo className="footer-brand__emblem" size={44} alt="" />
             <strong>{site.name}</strong>
           </div>
           <p>
@@ -45,10 +44,19 @@ export function Footer() {
             <li>
               <a
                 href={communityHref}
-                target={discordConfigured ? "_blank" : undefined}
-                rel={discordConfigured ? "noopener noreferrer" : undefined}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Discord
+                Discord do clã
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.discordGame}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                South America Server
               </a>
             </li>
           </ul>
@@ -77,11 +85,11 @@ export function Footer() {
             <a
               href={communityHref}
               className="btn btn--ghost btn--sm"
-              target={discordConfigured ? "_blank" : undefined}
-              rel={discordConfigured ? "noopener noreferrer" : undefined}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <DiscordIcon size={15} />
-              {discordConfigured ? "Discord" : "Comunidade"}
+              Discord do clã
             </a>
             {site.email ? (
               <a href={`mailto:${site.email}`} className="btn btn--ghost btn--sm">

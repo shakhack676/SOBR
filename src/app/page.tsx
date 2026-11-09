@@ -3,17 +3,16 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   ArrowRight,
-  ArrowUpRight,
   BadgeCheck,
   Crosshair,
   ExternalLink,
   Radio,
+  Server,
   ShieldCheck,
-  UsersRound,
 } from "lucide-react";
 import { units } from "@/data/units";
 import { site } from "@/data/site";
-import { SobrEmblem } from "@/components/SobrEmblem";
+import { Logo } from "@/components/Logo";
 import { UnitShield } from "@/components/UnitShield";
 import { DiscordButton } from "@/components/DiscordButton";
 import { CTABand } from "@/components/CTABand";
@@ -167,8 +166,8 @@ export default function HomePage() {
       <section className="section section--tight" aria-labelledby="parceiros">
         <Reveal>
           <div className="partners-head">
-            <h2 id="parceiros">Plataforma & alianças</h2>
-            <p>Estrutura institucional em homologação pelo comando</p>
+            <h2 id="parceiros">Plataforma & servidores</h2>
+            <p>Canais oficiais do clã e servidor de jogo</p>
           </div>
 
           <div className="grid grid--2">
@@ -179,7 +178,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
             >
               <span className="partner-card__logo" aria-hidden="true">
-                <SobrEmblem style={{ width: 42, height: 50 }} />
+                <Logo size={52} alt="" />
               </span>
               <span className="partner-card__body">
                 <span className="partner-card__tags">
@@ -198,26 +197,31 @@ export default function HomePage() {
               </span>
             </a>
 
-            <Link href="/comunidade#contato" className="partner-card">
+            <a
+              href={site.discordGame}
+              className="partner-card"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <span className="partner-card__logo" aria-hidden="true">
-                <UsersRound size={28} />
+                <Server size={28} />
               </span>
               <span className="partner-card__body">
                 <span className="partner-card__tags">
-                  <span className="partner-card__tag">Servidores parceiros</span>
+                  <span className="partner-card__tag">Servidor do jogo</span>
                   <span className="partner-card__tag partner-card__tag--accent">
-                    Em avaliação
+                    Arma Reforger
                   </span>
                 </span>
-                <span className="partner-card__title">Canal de parcerias</span>
+                <span className="partner-card__title">South America Server</span>
                 <span className="partner-card__desc">
-                  Propostas de comunidades e servidores são analisadas pelo comando.
+                  Servidor oficial do СОБР para treinamentos, operações e comunidade.
                 </span>
               </span>
               <span className="partner-card__go" aria-hidden="true">
-                <ArrowUpRight size={17} />
+                <ExternalLink size={17} />
               </span>
-            </Link>
+            </a>
           </div>
         </Reveal>
       </section>
@@ -234,7 +238,7 @@ export default function HomePage() {
                 partida: é manter o padrão quando a situação sai do previsto.
               </p>
               <div className="mission-panel__quote">
-                <SobrEmblem />
+                <Logo className="mission-panel__emblem" size={44} alt="" />
                 <p>
                   “Não é sobre ser o melhor.
                   <br />É sobre ser preparado.”

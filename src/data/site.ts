@@ -1,3 +1,11 @@
+const defaultDiscordClan = "https://discord.gg/nkjWdzHru";
+const defaultDiscordGame = "https://discord.gg/3UCSsbPBu";
+
+const discordClan =
+  process.env.NEXT_PUBLIC_DISCORD_INVITE?.trim() || defaultDiscordClan;
+const discordGame =
+  process.env.NEXT_PUBLIC_DISCORD_GAME_INVITE?.trim() || defaultDiscordGame;
+
 export const site = {
   name: "СОБР",
   nameLatin: "SOBR",
@@ -12,10 +20,13 @@ export const site = {
     /\/$/,
     "",
   ),
-  discordInvite: process.env.NEXT_PUBLIC_DISCORD_INVITE || "",
-  discordLabel: process.env.NEXT_PUBLIC_DISCORD_INVITE
-    ? "Discord Oficial"
-    : "Discord em configuração",
+  discordInvite: discordClan,
+  discordClan,
+  discordGame,
+  discordLabel: "Discord do clã",
+  discordGameLabel: "South America Server",
+  discordGameDescription:
+    "Servidor de jogo oficial do СОБР no Arma Reforger.",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
   provisionalNotice:
     "Conteúdo provisório. Informações institucionais, efetivo, patentes e operações serão homologados pelo comando.",

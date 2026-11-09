@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { ArrowLeft, Compass } from "lucide-react";
-import { SobrEmblem } from "@/components/SobrEmblem";
+import { Logo } from "@/components/Logo";
 
 export default function NotFound() {
   return (
     <section className="not-found">
       <div className="not-found__inner">
-        <SobrEmblem className="not-found__emblem" />
+        <Logo className="not-found__emblem" size={76} alt="" />
         <p className="eyebrow">Erro 404 · setor não localizado</p>
         <h1 className="not-found__code">404</h1>
         <h2 className="not-found__title">Posição fora do mapa.</h2>

@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, UserRound, X } from "lucide-react";
+import { Menu, Server, UserRound, X } from "lucide-react";
 import { navItems, site, communityHref } from "@/data/site";
-import { SobrEmblem } from "./SobrEmblem";
+import { Logo } from "./Logo";
 import { DiscordIcon } from "./DiscordIcon";
 
 function isActive(pathname: string, href: string) {
@@ -44,7 +44,7 @@ export function Header() {
       <header className="site-header" data-scrolled={scrolled}>
         <div className="header-inner">
           <Link href="/" className="brand" aria-label={`${site.name} — página inicial`}>
-            <SobrEmblem className="brand__emblem" />
+            <Logo className="brand__emblem" size={50} priority alt="" />
             <span className="brand__text">
               <span className="brand__name">{site.name}</span>
               <span className="brand__tag">MilSim · Disciplina · Propósito</span>
@@ -102,7 +102,7 @@ export function Header() {
       >
         <div className="drawer__head">
           <Link href="/" className="brand" onClick={() => setOpen(false)}>
-            <SobrEmblem className="brand__emblem" />
+            <Logo className="brand__emblem" size={44} alt="" />
             <span className="brand__text">
               <span className="brand__name">{site.name}</span>
             </span>
@@ -162,12 +162,22 @@ export function Header() {
           <a
             href={communityHref}
             className="btn btn--ghost btn--block"
-            target={site.discordInvite ? "_blank" : undefined}
-            rel={site.discordInvite ? "noopener noreferrer" : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setOpen(false)}
           >
             <DiscordIcon size={17} />
-            {site.discordInvite ? "Discord Oficial" : "Comunidade"}
+            Discord do clã
+          </a>
+          <a
+            href={site.discordGame}
+            className="drawer__server"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+          >
+            <Server size={14} />
+            South America Server
           </a>
           <p className="drawer__note">Conteúdo institucional provisório</p>
         </div>
