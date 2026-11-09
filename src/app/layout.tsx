@@ -70,8 +70,11 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/images/logo-sobr-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/images/logo-sobr.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/images/logo-sobr-180.png", type: "image/png", sizes: "180x180" }],
   },
 };
 

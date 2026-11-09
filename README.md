@@ -28,7 +28,12 @@ Site institucional do **СОБР** (SOBR), clã de operações táticas em **Arm
 | `/privacidade` | Política de privacidade provisória |
 | 404 | Página personalizada |
 
-Também são gerados `sitemap.xml`, `robots.txt` e o ícone SVG.
+Também são gerados `sitemap.xml`, `robots.txt` e os ícones PNG (`public/images/logo-sobr-*.png`) usados como favicon/touch icon.
+
+## Identidade visual
+
+O emblema do clã é a imagem em `public/images/logo-sobr.png` (e variantes otimizadas), usada no cabeçalho, rodapé, painel de missão e página 404. Não há logo externo.
+
 
 ## Desenvolvimento local
 
@@ -55,10 +60,11 @@ Copie `.env.example` para `.env.local` e preencha conforme necessário:
 | Variável | Uso |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | URL pública canônica (metadata, sitemap, robots) |
-| `NEXT_PUBLIC_DISCORD_INVITE` | Convite oficial do Discord. Se vazio, os CTAs apontam para `/comunidade#discord` |
+| `NEXT_PUBLIC_DISCORD_INVITE` | Convite do servidor oficial do clã no Discord |
+| `NEXT_PUBLIC_DISCORD_GAME_INVITE` | Convite do servidor de jogo (South America Server) |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | E-mail institucional exibido no rodapé e no contato |
 
-Todas são opcionais. O site funciona sem backend e sem variáveis; os fallbacks evitam links quebrados.
+Todas são opcionais. O site funciona sem backend e sem variáveis; se não definidas, usa os links oficiais padrão embutidos no código.
 
 ## Formulários
 
@@ -107,8 +113,7 @@ src/
   data/           conteúdo institucional tipado (site, unidades, patentes, doutrina, operações, FAQ)
   lib/            helpers de formulário/download
 public/
-  images/         imagens WebP ilustrativas
-  icon.svg        ícone do site
+  images/         imagens WebP ilustrativas e o emblema do clã (logo-sobr.png/webp + variantes PNG)
 ```
 
 ## Personalização de conteúdo

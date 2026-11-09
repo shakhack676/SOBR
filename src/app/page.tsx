@@ -7,12 +7,12 @@ import {
   Crosshair,
   ExternalLink,
   Radio,
-  Server,
   ShieldCheck,
 } from "lucide-react";
 import { units } from "@/data/units";
 import { site } from "@/data/site";
 import { Logo } from "@/components/Logo";
+import { SasLogo } from "@/components/SasLogo";
 import { UnitShield } from "@/components/UnitShield";
 import { DiscordButton } from "@/components/DiscordButton";
 import { CTABand } from "@/components/CTABand";
@@ -172,24 +172,24 @@ export default function HomePage() {
 
           <div className="grid grid--2">
             <a
-              href="https://reforger.armaplatform.com/"
+              href={site.discordInvite}
               className="partner-card"
               target="_blank"
               rel="noopener noreferrer"
             >
               <span className="partner-card__logo" aria-hidden="true">
-                <Logo size={52} alt="" />
+                <Logo size={52} alt="СОБР" />
               </span>
               <span className="partner-card__body">
                 <span className="partner-card__tags">
-                  <span className="partner-card__tag">Arma Reforger</span>
+                  <span className="partner-card__tag">Servidor do clã</span>
                   <span className="partner-card__tag partner-card__tag--accent">
-                    PC · Console
+                    Comunidade
                   </span>
                 </span>
-                <span className="partner-card__title">Ambiente de operações</span>
+                <span className="partner-card__title">СОБР</span>
                 <span className="partner-card__desc">
-                  Plataforma oficial onde o clã conduz treinamentos e operações.
+                  Servidor do clã onde fazemos operações, etc.
                 </span>
               </span>
               <span className="partner-card__go" aria-hidden="true">
@@ -204,7 +204,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
             >
               <span className="partner-card__logo" aria-hidden="true">
-                <Server size={28} />
+                <SasLogo width={54} alt="South America Server" />
               </span>
               <span className="partner-card__body">
                 <span className="partner-card__tags">
@@ -215,7 +215,7 @@ export default function HomePage() {
                 </span>
                 <span className="partner-card__title">South America Server</span>
                 <span className="partner-card__desc">
-                  Servidor oficial do СОБР para treinamentos, operações e comunidade.
+                  Servidor do Arma Reforger onde operamos e fazemos parte.
                 </span>
               </span>
               <span className="partner-card__go" aria-hidden="true">

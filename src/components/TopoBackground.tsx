@@ -70,7 +70,7 @@ export function TopoBackground() {
             <path key={i} d={d} />
           ))}
         </g>
-        <g fill="none" stroke="#a9b878" strokeWidth="0.8" opacity="0.13">
+        <g fill="none" stroke="#b91c1c" strokeWidth="0.8" opacity="0.13">
           <path d={contour(1180, 560, 190, 130, 2.1, 0.13)} />
           <path d={contour(280, 220, 150, 105, 0.4, 0.13)} />
           <path d={contour(720, 1180, 230, 140, 4.2, 0.13)} />

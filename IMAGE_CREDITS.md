@@ -2,25 +2,25 @@
 
 Todas as imagens em `public/images/` são **ilustrativas** e foram obtidas no Wikimedia Commons. Não representam membros, operações ou equipamentos reais do СОБР.
 
-Antes de reutilizar o projeto comercialmente, confirme a licença de cada arquivo na página de origem. Fotos de forças armadas dos EUA normalmente são de domínio público; imagens de outros países podem estar sob CC BY, CC BY-SA ou equivalente.
+Antes de reutilizar o projeto comercialmente, confirme a licença de cada arquivo na página de origem. As imagens abaixo são de forças armadas da Rússia/Federação Russa e estão sob Creative Commons Attribution (CC BY 4.0) ou equivalente, exceto quando indicado como domínio público.
 
 | Arquivo local | Origem (Wikimedia Commons) |
 | --- | --- |
-| `hero-squad.webp` | Afghan National Army soldiers conduct Military Operations in Urban Terrain exercise (4598881244) |
-| `banner-operator.webp` | 1-10 Special Forces Group (Airborne) Urban Movement (10031894) |
-| `unit-assault.webp` | Squad Versus Squad at North Wind 26 (9495694) |
-| `unit-recon.webp` | 7ATC and V Corps Best Squad Competition Day 3 (7314141) |
-| `unit-sniper.webp` | US Navy 070907-N-6477M-170 — MK 12 sniper rifle at sunset |
-| `unit-support.webp` | US Marines Conduct Helicopter Support Team Resupply with Finnish Soldiers (7486560) |
-| `unit-armor.webp` | Exercise Joint Viking 25 — Armored Vehicle Capabilities Exchange (8881748) |
-| `unit-air.webp` | US Army paratroopers, 1st Battalion, 503rd Infantry Regiment, 173rd Airborne Brigade |
-| `op-urban.webp` | 1-10 Special Forces Group (Airborne) Urban Movement (10031880) |
-| `op-night.webp` | Night operation 130223-A-FN371-047 |
-| `op-smoke.webp` | Soldiers with the Armed Forces of Ukraine deploy smoke from their BTR-80 |
-| `op-flares.webp` | Armored Fighting Vehicle Fires Smoke and Flares During Military Exercise at Training Range (9906033) |
-| `recruit.webp` | Squad Versus Squad at North Wind 26 (9495701) |
-| `about.webp` | 1-10 Special Forces Group (Airborne) Urban Movement (10031872) |
-| `history.webp` | 1-10 Special Forces Group (Airborne) Urban Movement (10031865) |
+| `hero-squad.webp` | Russian soldier with a RPK-74 |
+| `banner-operator.webp` | Rostov-on-Don 2014 Victory Day Parade Rehearsal, Soldier, Russia |
+| `unit-assault.webp` | Rostov-on-Don 2014 Victory Day Parade Rehearsal, Russian Army, Soldiers, Russia |
+| `unit-recon.webp` | Rostov-on-Don 2014 Victory Day Parade Rehearsal, Russian Army, Infantry, Russia |
+| `unit-sniper.webp` | Russian soldier with an Ak with 1P63 sight |
+| `unit-support.webp` | Moscow 2012 Victory Day Parade Rehearsal, Military artillery, Russia |
+| `unit-armor.webp` | Russian Ground Forces Iveco LMV |
+| `unit-air.webp` | Russian Airborne Troops in Bosnia |
+| `op-urban.webp` | Moscow 2012 Victory Day Parade Rehearsal, T-90 tank crew, Russia |
+| `op-night.webp` | Moscow 2012 Victory Day Parade Rehearsal, Military Vehicles, Night, Russia |
+| `op-smoke.webp` | Anti-AircraftExercise2019-34 |
+| `op-flares.webp` | Russian paratroopers - martial arts demonstration |
+| `recruit.webp` | Moscow 2012 Victory Day Parade Rehearsal, Tank Crew, Russia |
+| `about.webp` | Moscow 2012 Victory Day Parade Rehearsal, Russian Army, Russia |
+| `history.webp` | Rostov-on-Don 2014 Victory Day Parade Rehearsal, Military officers, Russia |
 
 ## Como localizar
 

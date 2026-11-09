@@ -16,9 +16,11 @@ import { Accordion } from "@/components/Accordion";
 import { CTABand } from "@/components/CTABand";
 import { Reveal } from "@/components/Reveal";
 import { DiscordIcon } from "@/components/DiscordIcon";
+import { Logo } from "@/components/Logo";
+import { SasLogo } from "@/components/SasLogo";
 import { CopyButton } from "@/components/CopyButton";
 import { communityFaq } from "@/data/faq";
-import { communityHref, site } from "@/data/site";
+import { site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Comunidade",
@@ -28,10 +30,8 @@ export const metadata: Metadata = {
 };
 
 export default function ComunidadePage() {
-  const discordConfigured = Boolean(site.discordInvite);
-  const discordCopyValue = discordConfigured
-    ? site.discordInvite
-    : `${site.url}/comunidade#discord`;
+  const discordCopyValue = site.discordInvite;
+  const gameCopyValue = site.discordGame;
   const contactText = [
     "Contato — СОБР",
     "Assunto: (descreva o motivo)",
@@ -62,32 +62,53 @@ export default function ComunidadePage() {
 
       <section className="section" id="discord" aria-labelledby="discord-titulo">
         <Reveal>
-          <div className="discord-panel">
-            <span className="discord-panel__icon" aria-hidden="true">
-              <DiscordIcon size={30} />
-            </span>
-            <div className="discord-panel__body">
-              <h2 id="discord-titulo">Discord oficial</h2>
-              <p>
-                {discordConfigured
-                  ? "Entre no servidor para acompanhar avisos, treinamentos e o processo de recrutamento."
-                  : "O convite oficial do Discord está em configuração. Até a publicação, use o formulário de contato desta página."}
-              </p>
+          <div className="grid grid--2">
+            <div className="discord-panel">
+              <span className="discord-panel__icon" aria-hidden="true">
+                <Logo size={36} alt="СОБР" />
+              </span>
+              <div className="discord-panel__body">
+                <h2 id="discord-titulo">СОБР</h2>
+                <p>
+                  Servidor do clã onde fazemos operações, etc.
+                </p>
+              </div>
+              <div className="discord-panel__actions">
+                <a
+                  href={site.discordInvite}
+                  className="btn btn--discord"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <DiscordIcon size={17} />
+                  Entrar no Discord do clã
+                </a>
+                <CopyButton text={discordCopyValue} label="Copiar link" />
+              </div>
             </div>
-            <div className="discord-panel__actions">
-              <a
-                href={communityHref}
-                className="btn btn--discord"
-                target={discordConfigured ? "_blank" : undefined}
-                rel={discordConfigured ? "noopener noreferrer" : undefined}
-              >
-                <DiscordIcon size={17} />
-                {discordConfigured ? "Entrar no Discord" : "Ver canal"}
-              </a>
-              <CopyButton
-                text={discordCopyValue}
-                label="Copiar link"
-              />
+
+            <div className="discord-panel">
+              <span className="discord-panel__icon" aria-hidden="true">
+                <SasLogo width={42} alt="South America Server" />
+              </span>
+              <div className="discord-panel__body">
+                <h2 id="discord-titulo-sas">South America Server</h2>
+                <p>
+                  Servidor do Arma Reforger onde operamos e fazemos parte.
+                </p>
+              </div>
+              <div className="discord-panel__actions">
+                <a
+                  href={site.discordGame}
+                  className="btn btn--discord"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <DiscordIcon size={17} />
+                  Entrar no servidor de jogo
+                </a>
+                <CopyButton text={gameCopyValue} label="Copiar link" />
+              </div>
             </div>
           </div>
 
@@ -122,12 +143,8 @@ export default function ComunidadePage() {
                     <DiscordIcon size={17} />
                   </span>
                   <div className="contact-item__body">
-                    <strong>Discord</strong>
-                    <span>
-                      {discordConfigured
-                        ? "Canal oficial de recrutamento e avisos"
-                        : "Convite em configuração"}
-                    </span>
+                    <strong>Discord do clã</strong>
+                    <span>Canal oficial de recrutamento e avisos</span>
                   </div>
                 </div>
                 <div className="contact-item">
@@ -183,7 +200,7 @@ export default function ComunidadePage() {
           <SectionHead
             eyebrow="Parcerias"
             title="Comunidades & servidores"
-            description="Parcerias são avaliadas caso a caso. Nenhum servidor é apresentado como parceiro oficial sem homologação do comando."
+            description="O South America Server é o servidor de jogo oficial do clã. Outras parcerias são avaliadas caso a caso pelo comando."
             id="parcerias-titulo"
           />
           <div className="grid grid--2">
@@ -205,12 +222,20 @@ export default function ComunidadePage() {
               <span className="card__icon">
                 <MessageSquare size={19} />
               </span>
-              <h3 className="card__title">Status atual</h3>
+              <h3 className="card__title">South America Server</h3>
               <p className="card__text">
-                Nenhum servidor parceiro homologado nesta versão. O canal de
-                parcerias permanece aberto para avaliação.
+                Servidor de jogo oficial do СОБР no Arma Reforger, região
+                América do Sul.
               </p>
-              <span className="pill pill--olive mt-24">Em avaliação</span>
+              <a
+                href={site.discordGame}
+                className="btn btn--ghost btn--sm mt-24"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <DiscordIcon size={15} />
+                Entrar no servidor de jogo
+              </a>
             </article>
           </div>
         </Reveal>

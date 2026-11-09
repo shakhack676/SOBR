@@ -148,7 +148,7 @@ export function ContactForm() {
               <CopyButton text={output} label="Copiar" />
               <button
                 type="button"
-                className="btn btn--olive btn--sm"
+                className="btn btn--accent btn--sm"
                 onClick={() =>
                   downloadTextFile(
                     `contato-${slugifyName(fields.name)}.txt`,

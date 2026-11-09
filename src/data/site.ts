@@ -1,5 +1,5 @@
-const defaultDiscordClan = "https://discord.gg/nkjWdzHru";
-const defaultDiscordGame = "https://discord.gg/3UCSsbPBu";
+const defaultDiscordClan = "https://discord.gg/nSzbZSnGjE";
+const defaultDiscordGame = "https://discord.gg/mMRakNEEuZ";
 
 const discordClan =
   process.env.NEXT_PUBLIC_DISCORD_INVITE?.trim() || defaultDiscordClan;
@@ -23,10 +23,11 @@ export const site = {
   discordInvite: discordClan,
   discordClan,
   discordGame,
-  discordLabel: "Discord do clã",
+  discordLabel: "СОБР",
+  discordClanDescription: "Servidor do clã onde fazemos operações, etc.",
   discordGameLabel: "South America Server",
   discordGameDescription:
-    "Servidor de jogo oficial do СОБР no Arma Reforger.",
+    "Servidor do Arma Reforger onde operamos e fazemos parte.",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
   provisionalNotice:
     "Conteúdo provisório. Informações institucionais, efetivo, patentes e operações serão homologados pelo comando.",

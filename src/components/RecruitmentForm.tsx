@@ -1,10 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { Download, Send } from "lucide-react";
+import { useCallback, useState } from "react";
+import { Download, Send, AlertCircle, CheckCircle } from "lucide-react";
 import { units } from "@/data/units";
 import { CopyButton } from "./CopyButton";
 import { downloadTextFile, slugifyName } from "@/lib/forms";
+
+const DISCORD_WEBHOOK_URL =
+  "https://discord.com/api/webhooks/1569139288359309342/IX3UgykR-d_8zG4B2Gc7l5OpybvIORVuLlWiLc0ej60u7IrY-0rm0tSEu6r63UI-4WcL";
 
 type Fields = {
   callsign: string;
@@ -26,26 +29,88 @@ const initial: Fields = {
   motivation: "",
 };
 
+function truncate(value: string, max = 900): string {
+  return value.length > max ? value.slice(0, max - 1).trim() + "…" : value;
+}
+
 export function RecruitmentForm() {
   const [fields, setFields] = useState<Fields>(initial);
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "ok" | "fail">(
+    "idle",
+  );
 
   function update<K extends keyof Fields>(key: K, value: Fields[K]) {
     setFields((current) => ({ ...current, [key]: value }));
   }
 
+  const sendToDiscord = useCallback(async () => {
+    const embed = {
+      title: "Nova ficha de alistamento — СОБР",
+      color: 0xb91c1c,
+      timestamp: new Date().toISOString(),
+      footer: {
+        text: "Clã de Operações Táticas СОБР · Arma Reforger",
+      },
+      fields: [
+        { name: "Indicativo", value: fields.callsign.trim() || "—", inline: true },
+        { name: "Idade", value: fields.age.trim() || "Não informada", inline: true },
+        { name: "Discord", value: fields.discord.trim() || "—", inline: true },
+        {
+          name: "Disponibilidade semanal",
+          value: fields.hours,
+          inline: true,
+        },
+        {
+          name: "Experiência em MilSim",
+          value: fields.experience,
+          inline: true,
+        },
+        {
+          name: "Unidade de preferência",
+          value: fields.unit,
+          inline: true,
+        },
+        {
+          name: "Motivação",
+          value: truncate(fields.motivation.trim()),
+          inline: false,
+        },
+      ],
+    };
+
+    const response = await fetch(DISCORD_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: "СОБР — Recrutamento",
+        avatar_url: "https://sobr.vercel.app/images/logo-sobr.png",
+        embeds: [embed],
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Discord retornou ${response.status}`);
+    }
+  }, [fields]);
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!fields.callsign.trim() || !fields.discord.trim()) {
-      setError("Preencha o indicativo e o contato Discord para gerar a ficha.");
+      setError("Preencha o indicativo e o contato Discord para enviar a inscrição.");
       return;
     }
     if (fields.motivation.trim().length < 20) {
       setError("Descreva sua motivação com pelo menos 20 caracteres.");
       return;
     }
+
     setError("");
+    setSubmitStatus("idle");
+    setSubmitting(true);
+
     const block = [
       "FICHA DE ALISTAMENTO — СОБР",
       "Clã de operações táticas · Arma Reforger",
@@ -62,9 +127,21 @@ export function RecruitmentForm() {
       fields.motivation.trim(),
       "",
       "— Fim da ficha —",
-      "O envio deve ser feito pelo canal oficial de recrutamento.",
+      "A inscrição foi enviada ao comando via webhook oficial.",
     ].join("\n");
     setOutput(block);
+
+    sendToDiscord()
+      .then(() => {
+        setSubmitStatus("ok");
+        setSubmitting(false);
+      })
+      .catch((err) => {
+        console.error("Erro ao enviar webhook:", err);
+        setSubmitStatus("fail");
+        setSubmitting(false);
+        setError("Não foi possível enviar a inscrição ao Discord. Tente novamente ou use o botão Copiar ficha para enviar manualmente.");
+      });
   }
 
   return (
@@ -168,9 +245,21 @@ export function RecruitmentForm() {
       </div>
 
       <div className="form-actions">
-        <button type="submit" className="btn btn--primary">
-          <Send size={16} />
-          Gerar ficha
+        <button
+          type="submit"
+          className="btn btn--primary"
+          disabled={submitting}
+        >
+          {submitting ? (
+            <>
+              <Send size={16} /> Enviando…
+            </>
+          ) : (
+            <>
+              <Send size={16} />
+              Enviar
+            </>
+          )}
         </button>
         <button
           type="button"
@@ -179,6 +268,7 @@ export function RecruitmentForm() {
             setFields(initial);
             setOutput("");
             setError("");
+            setSubmitStatus("idle");
           }}
         >
           Limpar
@@ -191,9 +281,21 @@ export function RecruitmentForm() {
         </p>
       ) : null}
 
+      {submitStatus === "ok" ? (
+        <div className="form-success" role="status">
+          <CheckCircle size={18} />
+          <span>Inscrição enviada ao comando oficial do СОБР.</span>
+        </div>
+      ) : submitStatus === "fail" ? (
+        <div className="form-fail" role="alert">
+          <AlertCircle size={18} />
+          <span>Falha ao enviar ao Discord. Veja o erro acima.</span>
+        </div>
+      ) : null}
+
       <p className="form-hint">
-        Nenhum dado é enviado a servidores. A ficha é gerada no seu navegador
-        para envio manual pelo canal oficial.
+        A inscrição é enviada ao canal oficial de recrutamento via webhook.
+        Você também pode copiar a ficha abaixo para envio manual.
       </p>
 
       {output ? (
@@ -204,7 +306,7 @@ export function RecruitmentForm() {
               <CopyButton text={output} label="Copiar ficha" />
               <button
                 type="button"
-                className="btn btn--olive btn--sm"
+                className="btn btn--accent btn--sm"
                 onClick={() =>
                   downloadTextFile(
                     `ficha-${slugifyName(fields.callsign)}.txt`,

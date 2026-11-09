@@ -33,9 +33,9 @@ export const recruitmentFaq = [
 
 export const communityFaq = [
   {
-    question: "O clã possui servidor próprio?",
+    question: "O clã possui servidor de jogo próprio?",
     answer:
-      "A estrutura de servidor e os horários oficiais estão em definição. O canal de comunidade será o ponto central para avisos, treinamentos e operações.",
+      "Sim. O South America Server é o servidor oficial de jogo do СОБР no Arma Reforger, região América do Sul. O link de acesso está na página de comunidade.",
   },
   {
     question: "Como entro em contato com o comando?",
